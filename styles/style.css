@@ -8,7 +8,7 @@
 * {
 	margin: 0px;
 	padding: 0px;
-	box-sizing: border-box;
+	/* box-sizing: border-box; */
 }
 
 a {
@@ -69,8 +69,8 @@ main {
 	height: 100vh;
 	display: flex;
 	flex-direction: column;
-	justify-content: center;
-	align-items: center;
+	/* justify-content: center; */
+	/* align-items: center; */
 	padding: 10px 10px 0px 10px;
 }
 
@@ -89,12 +89,14 @@ menu {
 	column-gap: 20px;
 }
 
+
+
 section {
 	height: 100%;
 	/* display: flex;
 	align-items: center;
 	justify-content: center; */
-	padding: 7%;
+	padding: 7% 7% 0px 7%;
 }
 
 .auth-nav {
@@ -124,7 +126,7 @@ section {
 	display: inline-block;
 	padding: 2px 15px;
 	text-align: center;
-	transform: scale(1);
+	/* transform: scale(1); */
 	/* Set the initial scale value to 1 */
 	transform-origin: 0 0;
 	filter: blur(0);
@@ -135,7 +137,8 @@ section {
 }
 
 .auth-box {
-	width: 440px;
+	/* max-width: 440px; */
+	/* width: 440px; */
 
 	border-radius: 6px;
 
@@ -147,6 +150,13 @@ section {
 	/* box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px; */
 	transition: height 0.5s ease-out;
 }
+
+@media (min-width: 500px) {
+	.auth-box {
+		width: 440px;
+	}
+  }
+  
 
 .auth-card {
 	background-color: var(--fgColor);
@@ -317,4 +327,8 @@ section {
 	background-color: #102770;
 	color: #ffeba7;
 	box-shadow: 0 8px 24px 0 rgba(16, 39, 112, .2);
+}
+
+a:active{
+	color: white;
 }
