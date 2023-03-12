@@ -1,3 +1,7 @@
+<?php
+session_start();
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -15,8 +19,14 @@
     <main>
         <header>
             <menu>
-                <span><a href="index.php">Home</a></span>
-                <span><a href="auth.php">Auth</a></span>
+                <?php
+                if( isset($_SESSION["users_email"]) ){
+                    echo "<span><a href='index.php'>Home</a></span>";
+                    echo "<span><a href='includes/logout.inc.php'>Logout</a></span>";
+                }else{
+                    echo "<span><a href='auth.php'>Auth</a></span>";
+                }
+                ?>
                 <span><a href="">Contact Us</a></span>
                 <span><a href="">About us</a></span>
             </menu>

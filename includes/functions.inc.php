@@ -100,7 +100,7 @@ function loginUser($conn, $email, $pass){
         exit();
     }else if( $checkPass===true ){  
         session_start();
-        $_SESSION["user_email"] = $emailExits["users_email"];
+        $_SESSION["users_email"] = $emailExits["users_email"];
 
         header("location: ../index.php");
         exit();
