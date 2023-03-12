@@ -51,6 +51,12 @@
                     <i class="input-icon uil uil-lock-alt"></i>
                 </div>
 
+                <div class="form-group mt-2">
+                    <input type="password" name="signup-rpass" class="form-style" placeholder="Repeat Password"
+                        id="signrpass" autocomplete="off">
+                    <i class="input-icon uil uil-lock-alt"></i>
+                </div>
+
                 <input type="submit" name="submit" value="submit" class="btn mt-4">
             </form>
 
