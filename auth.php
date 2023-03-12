@@ -10,7 +10,7 @@
 
         <div class="auth-card" id="loginBox">
 
-            <form action="includes/signup.inc.php" method="post">
+            <form action="includes/login.inc.php" method="post">
                 <div class="form-group">
                     <input type="email" name="login-email" class="form-style" placeholder="Your Email" id="logemail"
                         autocomplete="off">
@@ -23,7 +23,7 @@
                     <i class="input-icon uil uil-lock-alt"></i>
                 </div>
 
-                <input type="submit" value="submit" class="btn mt-4">
+                <input type="submit" value="submit" name="submit" class="btn mt-4">
                 <a href="#0" class="link">Forgot your password?</a>
             </form>
 
