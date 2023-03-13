@@ -63,10 +63,11 @@
         </div>
 
     </div>
-    <div id="image">
-    <img src="https://i.ibb.co/h87hcqM/image.png" alt="image" border="0">
-    </div>
     
+    <div id="image">
+        <img src="https://i.ibb.co/h87hcqM/image.png" alt="image" border="0">
+    </div>
+
 
 </section>
 

@@ -20,14 +20,30 @@ session_start();
         <header>
             <menu>
                 <?php
-                if( isset($_SESSION["users_email"]) ){
+                if (isset($_SESSION["users_email"])) {
                     echo "<span><a href='index.php'>Home</a></span>";
                     echo "<span><a href='includes/logout.inc.php'>Logout</a></span>";
-                }else{
+                } else {
                     echo "<span><a href='auth.php'>Auth</a></span>";
                 }
                 ?>
                 <span><a href="">Contact Us</a></span>
                 <span><a href="">About us</a></span>
             </menu>
+
+            <div id="messageBox">
+                <?php
+                if(isset($_GET["error"])){
+                    echo "
+                <div id='messageCard'>
+                    <span class='message'>".$_GET["error"]."</span>
+                    <span class='cross-icon' onclick='closeMessageBox(event)'>&#x2716;</span>
+                </div>
+                ";
+                unset($_GET['id']);
+                }
+                ?>
+            </div>
         </header>
+
+        <script src="js/headers.js"></script>
