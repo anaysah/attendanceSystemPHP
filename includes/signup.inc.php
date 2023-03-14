@@ -11,26 +11,27 @@ if(isset($_POST["submit"])){
     require_once('functions.inc.php');
 
     if(emptyInputSignup($name, $email, $pass, $repeatPass) !== false){
-        header("location: ../auth.php?error=emptyInput");
-        exit();
+        redirect("../auth.php","empty Input");
     }
 
     if(invalidEmailId($email) !== false){
-        header("location: ../auth.php?error=invalidEmail");
-        exit();
+        redirect("../auth.php","invalid Email");
     }
 
     if(passMatch($pass,$repeatPass) !== false){
-        header("location: ../auth.php?error=passwordDoesn'tMatch");
-        exit();
+        redirect("../auth.php","password dont match");
+    }
+
+    if( ($message = strongPass($pass)) !== false ){
+        redirect("../auth.php",$message);
     }
 
     if(emailExits($conn, $email) !== false){
-        header("location: ../auth.php?error=emailAlreadyExits");
-        exit();
+        redirect("../auth.php","Email Already Exits");
     }
 
-    createUser($conn, $email, $name, $pass);
+    $message = createUser($conn, $email, $name, $pass);
+    redirect("../auth.php",$message);
 }
 else{
     header("location: ../auth.php");
