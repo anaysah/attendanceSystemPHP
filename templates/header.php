@@ -12,12 +12,12 @@ session_start();
     <title>Document</title>
     <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css'>
     <link rel='stylesheet' href='https://unicons.iconscout.com/release/v2.1.9/css/unicons.css'>
-    <link rel="stylesheet" href="styles/style.css">
+    <link rel="stylesheet" href="styles/headers.css">
 </head>
 
-<body>
+<body class="bgImage">
     <main>
-        <header>
+        <header class="bgImage">
             <menu>
                 <?php
                 if (isset($_SESSION["users_email"])) {

@@ -1,5 +1,6 @@
 <?php include_once('templates/header.php') ?>
 
+<link rel="stylesheet" href="styles/auth.css">
 <section>
     <div class="auth-box">
         <div class="auth-nav">
@@ -8,7 +9,7 @@
         </div>
 
 
-        <div class="auth-card" id="loginBox">
+        <div class="auth-card bgImage" id="loginBox">
 
             <form action="includes/login.inc.php" method="post">
                 <div class="form-group">
