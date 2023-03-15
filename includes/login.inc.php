@@ -6,11 +6,11 @@ if(isset($_POST["submit"])){
     $pass = $_POST["login-pass"];
 
     require_once 'dbh.inc.php';
-    require_once 'functions.inc.php';
+    require_once 'auth.function.inc.php';
+    require_once('main.function.inc.php');
 
     if( emptyInputLogin($email, $pass) !== false){
-        header("location: ../auth.php?error=emptyInput");
-        exit();
+        redirect(".../auth.php","Emtpy Input");
     }
 
     loginUser($conn, $email, $pass);

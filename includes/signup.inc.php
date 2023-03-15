@@ -8,7 +8,8 @@ if(isset($_POST["submit"])){
     $repeatPass = $_POST["signup-rpass"];
 
     require_once('dbh.inc.php');
-    require_once('functions.inc.php');
+    require_once('auth.function.inc.php');
+    require_once('main.function.inc.php');
 
     if(emptyInputSignup($name, $email, $pass, $repeatPass) !== false){
         redirect("../auth.php","empty Input");
@@ -30,8 +31,14 @@ if(isset($_POST["submit"])){
         redirect("../auth.php","Email Already Exits");
     }
 
-    $message = createUser($conn, $email, $name, $pass);
-    redirect("../auth.php",$message);
+    $user_data = createUser($conn, $email, $name, $pass);
+    if( $user_data !== false){
+        $mail = sendVerificationMail($serverName.":8000",$user_data[0],$user_data[1],$user_data[2], $myMail, $user_data[3]);
+        if($mail !== false){
+            redirect("../auth.php","Verification Mail sent");
+        }
+    }
+    redirect("../auth.php","Not Created try again");
 }
 else{
     header("location: ../auth.php");

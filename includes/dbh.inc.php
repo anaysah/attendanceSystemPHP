@@ -3,7 +3,9 @@
 $serverName = "localhost";
 $DBusername = "root";
 $DBpass = "";
-$DBname = "authSystem";
+$DBname = "authSystemNew";
+
+$myMail = "anaysah2003@gmail.com";
 
 $conn = mysqli_connect($serverName,$DBusername,$DBpass,$DBname);
 
