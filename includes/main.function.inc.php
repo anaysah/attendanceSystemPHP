@@ -12,7 +12,7 @@ function redirect($url, $message = NULL)
 
 function isLoged()
 {
-    if (!isset($_SESSION["users_email"])) {
+    if (!isset($_SESSION["id"])) {
         redirect("../auth.php","Please login first");
     }else{
         return true;

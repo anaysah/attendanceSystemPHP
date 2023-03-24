@@ -170,28 +170,30 @@ function strongPass($password)
 }
 
 
-function loginUser($conn, $email, $pass)
+function loginUser($conn, $email, $pass, $userType)
 {
-    $emailExits = emailExits($conn, $email);
+    $data = emailExists($conn, $email, $userType);
 
-    if ($emailExits === false) {
-        header("location: ../auth.php?error=email dont Exits");
-        exit();
+    if ($data === false) {
+        redirect("../auth.php","email dont Exits");
     }
 
-    $passHashed = $emailExits["users_pass"];
+    if( $data["status"] === "inactive" ){
+        redirect("../auth.php","Account is inactive");
+    }
+
+    $passHashed = $data["password"];
     $checkPass = password_verify($pass, $passHashed);
 
     if ($checkPass === false) {
-        header("location: ../auth.php?error=passWrong");
-        exit();
+        redirect("./auth.php","Wrong Password");
     } else if ($checkPass === true) {
         session_start();
-        $_SESSION["users_email"] = $emailExits["users_email"];
-        $_SESSION["users_id"] = $emailExits["users_id"];
+        // $_SESSION["email"] = $data["email"];
+        $_SESSION["id"] = $data[$userType."_id"];
+        $_SESSION["userType"] = $userType;
 
-        header("location: ../index.php");
-        exit();
+        redirect("../index.php");
     }
 }
 function sendVerificationMail($serverName, $id, $token, $r_email, $s_email, $name, $userType)

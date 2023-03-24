@@ -20,7 +20,7 @@ session_start();
         <header class="bgImage">
             <menu>
                 <?php
-                if (isset($_SESSION["users_email"])) {
+                if (isset($_SESSION["id"])) {
                     echo "<span><a href='index.php'>Home</a></span>";
                     echo "<span><a href='includes/logout.inc.php'>Logout</a></span>";
                 } else {
