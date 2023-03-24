@@ -100,6 +100,33 @@
 	/* justify-content: center; */
 }
 
+.user_type_box{
+	width: 50%;
+	display: flex;
+	border-radius: var(--borderR);
+	border: solid 2px red;
+	color: var(--bgColor);
+	font-weight: bold;
+	overflow: hidden;
+}
+
+.hiddenRadio{
+	display: none;
+}
+
+.user_type_lable{
+	/* margin: 0px 20px; */
+	margin: 0px 0px;
+	flex-grow: 1;
+	text-align: center;
+	background-color: var(--bgColor);
+	color: var(--fgColor);
+}
+
+.selectedRadio{
+	background-color: var(--fgColor);
+	color: white;
+}
 
 .form-group {
 	position: relative;

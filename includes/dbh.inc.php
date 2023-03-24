@@ -3,7 +3,7 @@
 $serverName = "localhost";
 $DBusername = "root";
 $DBpass = "";
-$DBname = "authSystemNew";
+$DBname = "attendancewebapp";
 
 $myMail = "anaysah2003@gmail.com";
 

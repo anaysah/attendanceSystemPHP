@@ -12,6 +12,16 @@
         <div class="auth-card bgImage" id="loginBox">
 
             <form action="includes/login.inc.php" method="post">
+                <div class="user_type_box mb-2">
+                    <label class="user_type_lable selectedRadio" onclick="selectUserType(event)">
+                        Teacher
+                        <input type="radio" name="user-type" value="teacher" class="hiddenRadio" checked>
+                    </label>
+                    <label class="user_type_lable" onclick="selectUserType(event)">
+                        Student
+                        <input type="radio" name="user-type" value="student" class="hiddenRadio">
+                    </label>
+                </div>
                 <div class="form-group">
                     <input type="email" name="login-email" class="form-style" placeholder="Your Email" id="logemail"
                         autocomplete="off">
@@ -34,6 +44,17 @@
         <div class="auth-card" id="signupBox">
 
             <form action="includes/signup.inc.php" method="post">
+                <div class="user_type_box mb-2">
+                    <label class="user_type_lable selectedRadio" onclick="selectUserType(event)">
+                        Teacher
+                        <input type="radio" name="user-type" value="teacher" class="hiddenRadio" checked>
+                    </label>
+                    <label class="user_type_lable" onclick="selectUserType(event)">
+                        Student
+                        <input type="radio" name="user-type" value="student" class="hiddenRadio">
+                    </label>
+                </div>
+
                 <div class="form-group">
                     <input type="text" name="signup-name" class="form-style" placeholder="Your Full Name" id="signname"
                         autocomplete="off">
@@ -64,7 +85,7 @@
         </div>
 
     </div>
-    
+
     <div id="image">
         <img src="https://i.ibb.co/h87hcqM/image.png" alt="image" border="0">
     </div>

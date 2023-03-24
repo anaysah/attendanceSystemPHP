@@ -7,6 +7,14 @@ require 'PHPMailer/src/PHPMailer.php';
 require 'PHPMailer/src/SMTP.php';
 
 
+function userType($key)
+{
+    if (isset($_POST[$key]) && ($_POST[$key] === "teacher" || $_POST[$key] === "student")) {
+        return $_POST[$key];
+    } else {
+        return false;
+    }
+}
 
 function emptyInputSignup($name, $email, $pass, $repeatPass)
 {
@@ -41,9 +49,9 @@ function passMatch($pass, $repeatPass)
     return $result;
 }
 
-function emailExits($conn, $email)
+function emailExists($conn, $email, $userType)
 {
-    $sqlQ = "SELECT * FROM users WHERE users_email = ?;";
+    $sqlQ = "SELECT * FROM " . $userType . " WHERE email = ?;";
     $stmt = mysqli_stmt_init($conn);
 
     if (!mysqli_stmt_prepare($stmt, $sqlQ)) {
@@ -65,12 +73,44 @@ function emailExits($conn, $email)
     }
 }
 
-function createUser($conn, $email, $name, $pass)
+
+function createUser($conn, $email, $name, $pass, $userType)
 {
     $result = false;
     $token = generateToken();
 
-    $sqlQ = "INSERT INTO users(users_name, users_email, users_pass, users_token) VALUES(?, ?, ?, ?)";
+    $sql_query = "INSERT INTO {$userType} (name, email, password, token) VALUES (?, ?, ?, ?)";
+    $stmt = mysqli_stmt_init($conn);
+
+    if (!mysqli_stmt_prepare($stmt, $sql_query)) {
+        header("location: ../auth.php?error=stmtFailed");
+        exit();
+    }
+
+    $hashed_pass = password_hash($pass, PASSWORD_DEFAULT);
+
+    mysqli_stmt_bind_param($stmt, "ssss", $name, $email, $hashed_pass, $token);
+
+    if (mysqli_stmt_execute($stmt)) {
+        $result = [
+            "id" => mysqli_insert_id($conn),
+            "token" => $token
+        ];
+        // $result = [mysqli_insert_id($conn), $token, $email, $name];
+    }
+
+    mysqli_stmt_close($stmt);
+    return $result;
+}
+
+function deleteUser($conn, $email, $userType)
+{
+    // Validate parameters
+    if (empty($email) || empty($userType)) {
+        return false;
+    }
+
+    $sqlQ = "DELETE FROM " . $userType . " WHERE email = ?";
     $stmt = mysqli_stmt_init($conn);
 
     if (!mysqli_stmt_prepare($stmt, $sqlQ)) {
@@ -78,16 +118,13 @@ function createUser($conn, $email, $name, $pass)
         exit();
     }
 
-    $hashedPass = password_hash($pass, PASSWORD_DEFAULT);
+    mysqli_stmt_bind_param($stmt, "s", $email);
+    $result = mysqli_stmt_execute($stmt);
 
-    mysqli_stmt_bind_param($stmt, "ssss", $name, $email, $hashedPass, $token);
-
-    if (mysqli_stmt_execute($stmt)) {
-        $result = [mysqli_insert_id($conn),$token, $email, $name];
-    }
     mysqli_stmt_close($stmt);
     return $result;
 }
+
 
 function generateToken($length = 32)
 {
@@ -157,11 +194,11 @@ function loginUser($conn, $email, $pass)
         exit();
     }
 }
-function sendVerificationMail($serverName, $id, $token, $r_email, $s_email, $username){
+function sendVerificationMail($serverName, $id, $token, $r_email, $s_email, $name, $userType)
+{
     $result = false;
-
     $mail = new PHPMailer(true);
-    $url = "$serverName/verifyMail.php?i=$id&t=$token&e=$r_email";
+    $url = "$serverName/verifyMail.php?i=$id&t=$token&e=$r_email&u=$userType";
     try {
         //Server settings
         // $mail->SMTPDebug = 2;                                 // Enable verbose debug output
@@ -173,18 +210,22 @@ function sendVerificationMail($serverName, $id, $token, $r_email, $s_email, $use
         $mail->SMTPSecure = 'tls'; // Enable TLS encryption, `ssl` also accepted
         $mail->Port = 587; // TCP port to connect to
 
-        //Recipients
-        $mail->setFrom('anaysah2003@gmail.com', 'no-reply');
-        $mail->addAddress($r_email, $username); // Add a recipient
+        if ($mail->validateAddress($r_email)) {
+            // Recipients
+            $mail->setFrom($s_email, 'no-reply');
+            $mail->addAddress($r_email, $name); // Add a recipient
 
-        //Content
-        $mail->isHTML(true); // Set email format to HTML
-        $mail->Subject = 'Verification Link';
-        $mail->Body = "This is your Verification link <a href='$url'><b>$url</b></a>";
-        $mail->AltBody = "This is your Verification $url";
+            //Content
+            $mail->isHTML(true); // Set email format to HTML
+            $mail->Subject = 'Verification Link';
+            $mail->Body = "This is your Verification link <a href='$url'><b>$url</b></a>";
+            $mail->AltBody = "This is your Verification $url";
 
-        $mail->send();
-        $result = true;
+            $mail->send();
+            $result = true;
+        } else {
+            $result = false;
+        }
     } catch (Exception $e) {
         // return "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
         $result = false;

@@ -3,9 +3,9 @@
 <?php
 require_once('includes/main.function.inc.php');
 
-function emailExits($conn, $email)
+function emailExits($conn, $email, $userType)
 {
-    $sqlQ = "SELECT * FROM users WHERE users_email = ?;";
+    $sqlQ = "SELECT * FROM {$userType} WHERE email = ?;";
     $stmt = mysqli_stmt_init($conn);
 
     if (!mysqli_stmt_prepare($stmt, $sqlQ)) {
@@ -27,27 +27,27 @@ function emailExits($conn, $email)
     }
 }
 
-function alreadyVerified($conn, $users_id){
+function alreadyVerified($conn, $id, $userType){
     $result = false;
-    $sql = "SELECT users_status FROM users WHERE users_id = ?";
+    $sql = "SELECT status FROM {$userType} WHERE id = ?";
 
     // Prepare the statement for execution
     $stmt = mysqli_prepare($conn, $sql);
 
     // Bind the parameters
-    mysqli_stmt_bind_param($stmt, "i", $users_id);
+    mysqli_stmt_bind_param($stmt, "i", $id);
 
     // Execute the statement
     mysqli_stmt_execute($stmt);
 
     // Bind the result variables
-    mysqli_stmt_bind_result($stmt, $users_status);
+    mysqli_stmt_bind_result($stmt, $status);
 
     // Fetch the results
     mysqli_stmt_fetch($stmt);
 
-    // Check the value of users_status
-    if ($users_status == "active") {
+    // Check the value of status
+    if ($status == "active") {
         $result = true;
     }
 
@@ -56,22 +56,22 @@ function alreadyVerified($conn, $users_id){
     return $result;
 }
 
-function verifyMail($conn, $users_id, $token, $email)
+function verifyMail($conn, $id, $token, $email)
 {
     $result = false;
-    $emailExits = emailExits($conn, $email);
+    $emailExits = emailExists($conn, $email, $usertype);
 
     if ($emailExits === false) {
         return "User Not exits";
     }
 
-    $sql = "UPDATE users SET users_status = 'active' WHERE users_id = ? AND users_token = ? AND users_email = ?";
+    $sql = "UPDATE users SET status = 'active' WHERE id = ? AND users_token = ? AND email = ?";
 
     // Prepare the statement for execution
     $stmt = mysqli_prepare($conn, $sql);
 
     // Bind the parameters
-    mysqli_stmt_bind_param($stmt, "iss", $users_id, $token, $email);
+    mysqli_stmt_bind_param($stmt, "iss", $id, $token, $email);
 
     // Execute the statement
     mysqli_stmt_execute($stmt);
@@ -89,18 +89,20 @@ function verifyMail($conn, $users_id, $token, $email)
     return $result;
 }
 
-if (isset($_GET["i"]) && isset($_GET["e"]) && isset($_GET["t"])) {
+if (isset($_GET["i"]) && isset($_GET["e"]) && isset($_GET["t"]) && isset($_GET['u']))) {
     require_once('includes/dbh.inc.php');
+    
+    
 
-    if(alreadyVerified($conn, $_GET['i']) !== false){
-        echo "<section>User already Verified</section>";
-        exit();
-    }
+    // if(alreadyVerified($conn, $_GET['i'], $_GET['u']) !== false){
+    //     echo "<section>User already Verified</section>";
+    //     exit();
+    // }
 
-    $result = verifyMail($conn, $_GET['i'], $_GET['t'], $_GET['e']);
-    if ($result !== false) {
-        echo "<section>" . $result . "</section>";
-    }
+    // $result = verifyMail($conn, $_GET['i'], $_GET['t'], $_GET['e']);
+    // if ($result !== false) {
+    //     echo "<section>" . $result . "</section>";
+    // }
 
 } else {
     redirect("../auth.php", "Wrong link");

@@ -1,15 +1,22 @@
 <?php
 
 if(isset($_POST["submit"])){
+    require_once('dbh.inc.php');
+    require_once('auth.function.inc.php');
+    require_once('main.function.inc.php');
+    
     echo "its works";
     $name = $_POST["signup-name"];
     $email = $_POST["signup-email"];
     $pass = $_POST["signup-pass"];
     $repeatPass = $_POST["signup-rpass"];
+    $userType = userType("user-type");
 
-    require_once('dbh.inc.php');
-    require_once('auth.function.inc.php');
-    require_once('main.function.inc.php');
+    if($userType === false){
+        redirect("../auth.php","please select a user type");
+    }
+
+    
 
     if(emptyInputSignup($name, $email, $pass, $repeatPass) !== false){
         redirect("../auth.php","empty Input");
@@ -23,22 +30,30 @@ if(isset($_POST["submit"])){
         redirect("../auth.php","password dont match");
     }
 
-    if( ($message = strongPass($pass)) !== false ){
-        redirect("../auth.php",$message);
-    }
+    // if( ($message = strongPass($pass)) !== false ){
+    //     redirect("../auth.php",$message);
+    // }
 
-    if(emailExits($conn, $email) !== false){
+    if(emailExists($conn, $email, $userType) !== false){
         redirect("../auth.php","Email Already Exits");
     }
 
-    $user_data = createUser($conn, $email, $name, $pass);
-    if( $user_data !== false){
-        $mail = sendVerificationMail($serverName.":8000",$user_data[0],$user_data[1],$user_data[2], $myMail, $user_data[3]);
-        if($mail !== false){
-            redirect("../auth.php","Verification Mail sent");
-        }
+    $userData = createUser($conn, $email, $name, $pass, $userType);
+    if( $user_data === false){
+        redirect("../auth.php","Not Created try again");
     }
-    redirect("../auth.php","Not Created try again");
+
+
+    $id = $userData['id'];
+    $token = $userData['token'];
+    $mail = sendVerificationMail($serverName.":8000",$id, $token,$email, $myMail, $name, $userType);
+    if($mail !== false){
+        redirect("../auth.php","Check Mail");
+    }
+    
+    deleteUser($conn, $email, $userType);
+    redirect("../auth.php","Verification Mail Not sent");
+    
 }
 else{
     header("location: ../auth.php");
