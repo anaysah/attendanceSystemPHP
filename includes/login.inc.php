@@ -21,9 +21,11 @@ if(isset($_POST["submit"])){
 
 
 
-    loginUser($conn, $email, $pass, $userType);
-    
-    
+    if(loginUser($conn, $email, $pass, $userType)){
+        redirect("../home.php","you are loged in");
+    }
+    redirect("../auth.php","Wrong Password");
+
 }else{
     header("location: ../auth.php");
     exit();

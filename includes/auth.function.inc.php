@@ -173,6 +173,7 @@ function strongPass($password)
 function loginUser($conn, $email, $pass, $userType)
 {
     $data = emailExists($conn, $email, $userType);
+    $result = false;
 
     if ($data === false) {
         redirect("../auth.php","email dont Exits");
@@ -186,15 +187,16 @@ function loginUser($conn, $email, $pass, $userType)
     $checkPass = password_verify($pass, $passHashed);
 
     if ($checkPass === false) {
-        redirect("./auth.php","Wrong Password");
+        $result = false;
     } else if ($checkPass === true) {
         session_start();
         // $_SESSION["email"] = $data["email"];
         $_SESSION["id"] = $data[$userType."_id"];
         $_SESSION["userType"] = $userType;
 
-        redirect("../index.php");
+        $result = true;
     }
+    return $result;
 }
 function sendVerificationMail($serverName, $id, $token, $r_email, $s_email, $name, $userType)
 {
