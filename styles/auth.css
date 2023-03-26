@@ -1,3 +1,11 @@
+#auth-section {
+	height: 100%;
+	display: flex;
+	align-items: center;
+	justify-content: space-evenly;
+
+	padding: 5% 7% 7% 7%;
+}
 
 .auth-nav {
 	display: flex;
@@ -74,11 +82,10 @@
 		display: block;
 	}
 
-	.fade-out {
+	/* .fade-out {
 		opacity: 0;
 		transition: opacity 0.5s ease-out;
-	}
-
+	}*/
 	@keyframes fadeIn {
 		from {
 			opacity: 0;

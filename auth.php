@@ -1,7 +1,7 @@
 <?php include_once('templates/header.php') ?>
 
 <link rel="stylesheet" href="styles/auth.css">
-<section>
+<section id="auth-section">
     <div class="auth-box">
         <div class="auth-nav">
             <span class="auth-nav-Btn" id="auth-nav-loginBtn">Log In</span>

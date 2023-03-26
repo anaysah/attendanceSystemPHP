@@ -16,7 +16,7 @@ if(isset($_POST["submit"])){
     }
 
     if( emptyInputLogin($email, $pass) !== false){
-        redirect(".../auth.php","Emtpy Input");
+        redirect("../auth.php","Emtpy Input");
     }
 
 

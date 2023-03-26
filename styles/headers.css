@@ -3,17 +3,20 @@
 :root {
 	--bgColor: #2a2b38;
 	--fgColor: #1C0D1B;
+	--priColor: #EDEADE;
+	--secColor: white;
 	--borderR: 6px;
 }
 
-.white-theme{
+.white-theme {
 	--bgColor: rgb(245, 245, 245);
-	--fgColor: #2a2b38;;
+	--fgColor: #2a2b38;
 }
 
 * {
 	margin: 0px;
 	padding: 0px;
+	transition: all 200ms linear;
 	/* box-sizing: border-box; */
 }
 
@@ -25,6 +28,7 @@ a {
 
 a:hover {
 	text-decoration: none;
+	color: white;
 }
 
 .link {
@@ -65,7 +69,7 @@ body {
 /* .auth-card,
 body,
 header  */
-.bgImage{
+.bgImage {
 	background-image: url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/1462889/pat.svg');
 	background-position: bottom center;
 	background-repeat: no-repeat;
@@ -84,7 +88,7 @@ main {
 header {
 	border-radius: 6px;
 	/* border: 2px white solid; */
-	width: 100%;
+	/* width: 100%; */
 	padding: 5px 10px;
 	background-color: var(--fgColor);
 	background-size: 300%;
@@ -97,12 +101,13 @@ menu {
 	column-gap: 20px;
 	padding: 2px;
 }
-menu a{
+
+menu a {
 	text-decoration: none;
-	color: white;
+	color: var(--bgColor);
 }
 
-.changeTheme-btn{
+.changeTheme-btn {
 	background-color: var(--bgColor);
 	padding: 0px var(--borderR);
 	border-radius: var(--borderR);
@@ -110,27 +115,27 @@ menu a{
 	user-select: none;
 }
 
-#theme-label{
+#theme-label {
 	color: var(--fgColor);
 	font-weight: bold;
 }
 
-.changeTheme-icon{
+.changeTheme-icon {
 	line-height: 1;
-	color:var(--fgColor);
+	color: var(--fgColor);
 }
 
 
-  
 
-#messageBox{
+
+#messageBox {
 	width: 100%;
 	position: absolute;
 	bottom: -40px;
 	left: 0px;
 }
 
-#messageCard{
+#messageCard {
 	background-color: grey;
 	border-radius: var(--borderR);
 	border: solid 2px red;
@@ -143,7 +148,24 @@ menu a{
 
 }
 
-.cross-icon{
+
+.fade-out {
+	opacity: 0;
+	transition: opacity 0.5s ease-out;
+}
+
+/* @keyframes fadeIn {
+	from {
+		opacity: 0;
+	}
+
+	to {
+		opacity: 1;
+	}
+} */
+
+
+.cross-icon {
 	margin-left: 5px;
 	color: red;
 	background-color: var(--fgColor);
@@ -154,11 +176,3 @@ menu a{
 }
 
 
-section {
-	height: 100%;
-	display: flex;
-	align-items: center;
-	justify-content: space-evenly;
-
-	padding: 5% 7% 7% 7%;
-}
