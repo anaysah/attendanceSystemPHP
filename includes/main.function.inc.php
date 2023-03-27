@@ -1,4 +1,5 @@
 <?php
+$HOME = "../home.php";
 
 function redirect($url, $message = NULL)
 {

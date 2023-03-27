@@ -1,0 +1,44 @@
+
+
+
+.side-menu{
+        width: 220px;
+}
+
+.side-menu-top{
+    border-bottom: 1px solid white;
+}
+
+.add-class{
+    padding: .6rem;
+    margin: 0.5rem  ;
+    border-radius: var(--borderR);
+    gap: 10px;
+    margin-bottom: 0.7rem;
+}
+
+.side-menu-mid{
+    padding: 0.5rem ;
+}
+
+.side-menu-btn{
+    padding: 0.4rem 0.5rem;
+    border-radius: var(--borderR);
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    /* margin: 0.5rem 0.5rem 0rem 0.5rem  ; */
+}
+
+.side-menu-btn:hover , .add-class:hover{
+    background-color: var(--bgColor);
+    color: var(--priColor);
+    cursor: pointer;
+  }
+  
+
+.box{
+    background-color: var(--fgColor);
+    border-radius: var(--borderR)
+}
+

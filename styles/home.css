@@ -1,52 +1,32 @@
-.flex-center{
-    display: flex;
-    justify-content: start;
-    align-items: center;
-}
-
-.main-body{
-    height: 100%;
-    padding: 10px 0px;
-}
-
-.side-menu{
-        width: 220px;
-}
-
-.side-menu-top{
-    border-bottom: 1px solid white;
-}
-
-.add-class{
-    padding: .6rem;
-    margin: 0.5rem  ;
+.addClass-form {
+    background-color: var(--fg1Color);
     border-radius: var(--borderR);
-    gap: 10px;
-    margin-bottom: 0.7rem;
 }
 
-.side-menu-mid{
-    padding: 0.5rem ;
-}
-
-.side-menu-btn{
-    padding: 0.4rem 0.5rem;
+.addClass-input {
     border-radius: var(--borderR);
-    display: flex;
-    gap: 10px;
-    align-items: center;
-    /* margin: 0.5rem 0.5rem 0rem 0.5rem  ; */
+    padding: 2px;
 }
 
-.side-menu-btn:hover , .add-class:hover{
-    background-color: var(--bgColor);
+.copyCode-btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 30px;
+    height: 30px;
+    position: relative;
+}
+
+
+.copyCode-btn:hover{
+    background-color: var(--fg1Color);
+    border-radius: 50%;
     color: var(--priColor);
-    cursor: pointer;
-  }
-  
-
-.box{
-    background-color: var(--fgColor);
-    border-radius: var(--borderR)
+    position: relative;
 }
 
+.copyCode-btn:active{
+    /* border-radius: 0; */
+    background-color: var(--priColor);
+    color: var(--fg1Color);
+}

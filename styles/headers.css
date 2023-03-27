@@ -3,6 +3,7 @@
 :root {
 	--bgColor: #2a2b38;
 	--fgColor: #1C0D1B;
+	--fg1Color:#1f2029;
 	--priColor: #EDEADE;
 	--secColor: white;
 	--borderR: 6px;
@@ -18,6 +19,16 @@
 	padding: 0px;
 	transition: all 200ms linear;
 	/* box-sizing: border-box; */
+}
+
+body{
+	overflow: hidden;
+}
+
+.flex-center{
+    display: flex;
+    justify-content: start;
+    align-items: center;
 }
 
 a {
@@ -175,4 +186,7 @@ menu a {
 	cursor: pointer;
 }
 
-
+.main-body{
+    height: 100%;
+    padding: 10px 0px;
+}
