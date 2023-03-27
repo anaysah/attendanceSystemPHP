@@ -70,8 +70,8 @@ function giveClasses($conn)
                         echo '<div class="card-body text-success bg-image" >';
 
                         echo '<span class="d-flex justify-content-between">';
-                        echo "<span class='flex-center'><h4 class='m-0'>{$class['class_name']}</h4></span>";
-                        echo '<span class="ml-auto copyCode-btn" tooltip-data="Copy Class Link"><i class="fa-regular fa-clipboard fa-lg"></i></span>';
+                        echo "<span class='flex-cen'><h4 class='m-0'>{$class['class_name']}</h4></span>";
+                        echo '<span class="ml-auto copyCode-btn flex-cen tooltip-box" tooltip-data="Copy Class Link"><i class="fa-regular fa-clipboard fa-lg"></i></span>';
                         echo '</span>';
 
                         echo "<p class='card-text'>{$class['section']}</p>";
