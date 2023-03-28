@@ -1,6 +1,7 @@
 <?php
 session_start();
 require_once 'main.function.inc.php';
+isLoged();
 
 if ($_SESSION["userType"] !== "teacher") {
     redirect($HOME, "You are not a teacher");
@@ -19,8 +20,29 @@ function generateClassCode()
     return $class_code;
 }
 
+function teacherMembership($conn, $class_id, $teacher_id)
+{
+    // Prepare the SQL query
+    $stmt = $conn->prepare("INSERT INTO class_teacher_member (class_id, teacher_id) VALUES (?, ?)");
 
-function addClass($conn, $class_name, $section)
+    // Bind the parameters
+    $stmt->bind_param("ii", $class_id, $teacher_id);
+
+    // Execute the query
+    $result = $stmt->execute();
+
+    // Check if the query was successful
+    if ($result) {
+        // Query was successful, return true
+        return true;
+    } else {
+        // Query failed, return false
+        return false;
+    }
+}
+
+
+function addClass($conn, $class_name, $section, $teacher_id)
 {
     $result = false;
     $sql = "INSERT INTO class (class_name, class_code, section, start_date) VALUES (?, ?, ?, ?)";
@@ -36,7 +58,9 @@ function addClass($conn, $class_name, $section)
     if ($stmt) {
         $stmt->bind_param("ssss", $class_name, $class_code, $section, $start_date);
         if ($stmt->execute()) {
-            $result = true;
+            if (teacherMembership($conn, $stmt->insert_id, $teacher_id)) {
+                $result = true;
+            }
         }
     }
 
@@ -47,17 +71,18 @@ function addClass($conn, $class_name, $section)
 }
 
 
-if ( isset($_POST["submit"]) ) {
+if (isset($_POST["submit"])) {
     require_once 'dbh.inc.php';
 
     $class_name = $_POST['class_name'];
     $section = $_POST['class_section'];
+    $teacher_id = $_POST['teacher_id'];
 
-    if($class_name==="" || $section===""){
+    if ($class_name === "" || $section === "") {
         redirect($HOME, "Cant be empty");
     }
 
-    if (addClass($conn, $class_name, $section)!==false){
+    if (addClass($conn, $class_name, $section, $teacher_id) !== false) {
         redirect($HOME, "added");
     }
 

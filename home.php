@@ -4,38 +4,66 @@ require_once('includes/main.function.inc.php');
 isLoged();
 require_once 'includes/dbh.inc.php';
 
-function giveClasses($conn)
-{
-    // Create SQL query to get all classes
-    $sql = "SELECT * FROM class";
+// function giveClasses($conn, $teacher_id)
+// {
+//     // Create SQL query to get all classes
+//     // $sql = "SELECT * FROM class";
+//     $sql = "SELECT class.* FROM class
+//     INNER JOIN class_teacher_member ON class_teacher_member.class_id = class.class_id
+//     WHERE class_teacher_member.teacher_id = ?";
 
-    // Execute query
-    $result = mysqli_query($conn, $sql);
 
-    // Check for errors
-    if (!$result) {
-        die("Query failed: " . mysqli_error($conn));
+//     // Execute query
+//     $result = mysqli_query($conn, $sql);
+
+//     // Check for errors
+//     if (!$result) {
+//         die("Query failed: " . mysqli_error($conn));
+//     }
+
+//     // Check if any rows were returned
+//     if (mysqli_num_rows($result) > 0) {
+//         // Output data of each row
+//         $classes = array();
+//         while ($row = mysqli_fetch_assoc($result)) {
+//             $class = array(
+//                 "class_id" => $row["class_id"],
+//                 "class_name" => $row["class_name"],
+//                 "class_code" => $row["class_code"],
+//                 "section" => $row["section"],
+//                 "start_date" => $row["start_date"]
+//             );
+//             $classes[] = $class;
+//         }
+//         return $classes;
+//     } else {
+//         return array();
+//     }
+// }
+
+function giveClasses($conn, $teacher_id) {
+    // Prepare a statement to retrieve the classes belonging to a particular teacher
+    $stmt = $conn->prepare("
+        SELECT class.* FROM class
+        INNER JOIN class_teacher_member ON class_teacher_member.class_id = class.class_id
+        WHERE class_teacher_member.teacher_id = ?
+    ");
+    $stmt->bind_param("i", $teacher_id);
+
+    // Execute the statement
+    $stmt->execute();
+
+    // Get the results
+    $result = $stmt->get_result();
+
+    // Fetch the rows and return them as an array
+    $classes = array();
+    while ($row = $result->fetch_assoc()) {
+        $classes[] = $row;
     }
-
-    // Check if any rows were returned
-    if (mysqli_num_rows($result) > 0) {
-        // Output data of each row
-        $classes = array();
-        while ($row = mysqli_fetch_assoc($result)) {
-            $class = array(
-                "class_id" => $row["class_id"],
-                "class_name" => $row["class_name"],
-                "class_code" => $row["class_code"],
-                "section" => $row["section"],
-                "start_date" => $row["start_date"]
-            );
-            $classes[] = $class;
-        }
-        return $classes;
-    } else {
-        return array();
-    }
+    return $classes;
 }
+
 
 
 ?>
@@ -55,12 +83,13 @@ function giveClasses($conn)
                     <span>
                         <input type="text" class="addClass-input" name="class_section" placeholder="Section" />
                     </span>
+                    <input type="hidden" name="teacher_id" value="<?=$_SESSION['id']?>" >
                     <input type="submit" name="submit" value="submit" class="btn btn-primary py-0 px-3">
                 </form>
             </div>
             <div class="row row-cols-1 row-cols-md-2 row-cols-sm-1 row-cols-lg-3">
                 <?php
-                $classes = giveClasses($conn);
+                $classes = giveClasses($conn, $_SESSION['id']);
 
                 if (count($classes) > 0) {
                     foreach ($classes as $class) {
@@ -71,7 +100,7 @@ function giveClasses($conn)
 
                         echo '<span class="d-flex justify-content-between">';
                         echo "<span class='flex-cen'><h4 class='m-0'>{$class['class_name']}</h4></span>";
-                        echo '<span class="ml-auto copyCode-btn flex-cen tooltip-box" tooltip-data="Copy Class Link"><i class="fa-regular fa-clipboard fa-lg"></i></span>';
+                        echo '<span class="ml-auto copyCode-btn flex-cen tooltip-box" tooltip-data="Copy Class Link" ><i class="fa-regular fa-clipboard fa-lg"></i></span>';
                         echo '</span>';
 
                         echo "<p class='card-text'>{$class['section']}</p>";

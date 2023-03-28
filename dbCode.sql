@@ -76,3 +76,10 @@ CREATE TABLE OnLeave (
   FOREIGN KEY (AttendanceID) REFERENCES Attendance(AttendanceID),
   FOREIGN KEY (StudentID) REFERENCES Student(StudentID)
 );
+
+ALTER TABLE `class_teacher_member`
+DROP FOREIGN KEY `class_teacher_member_ibfk_1`;
+
+ALTER TABLE `class_teacher_member`
+ADD CONSTRAINT `class_teacher_member_ibfk_1` FOREIGN KEY (`class_id`)
+REFERENCES `class` (`class_id`) ON DELETE CASCADE;
