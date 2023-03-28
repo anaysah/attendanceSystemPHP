@@ -39,14 +39,14 @@ session_start();
 
             <div id="messageBox">
                 <?php
-                if (isset($_GET["error"])) {
+                if (isset($_SESSION["error"])) {
                     echo "
                 <div id='messageCard'>
-                    <span class='message'>" . $_GET["error"] . "</span>
+                    <span class='message'>" . $_SESSION["error"] . "</span>
                     <span class='cross-icon' onclick='closeMessageBox(event)'>&#x2716;</span>
                 </div>
                 ";
-                    unset($_GET['id']);
+                    unset($_SESSION["error"]);
                 }
                 ?>
             </div>

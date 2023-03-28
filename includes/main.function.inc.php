@@ -6,7 +6,8 @@ function redirect($url, $message = NULL)
     if ($message === NULL) {
         header("location: " . $url);
     } else {
-        header("location: " . $url . "?error=" . $message);
+        $_SESSION["error"] = $message;
+        header("location: " . $url);
     }
     exit();
 }

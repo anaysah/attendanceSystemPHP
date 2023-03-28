@@ -150,7 +150,7 @@ header {
 	padding: 5px 10px;
 	background-color: var(--fgColor);
 	background-size: 300%;
-	position: relative;
+	/* position: relative; */
 }
 
 menu {
@@ -189,7 +189,7 @@ menu a {
 #messageBox {
 	width: 100%;
 	position: absolute;
-	bottom: -40px;
+	top: 5px;
 	left: 0px;
 }
 
