@@ -4,19 +4,19 @@
 
         <div class="container-fluid p-1">
 
-            <!-- <div class="d-flex box mb-3 p-2">
-                <form action="includes/addClass.inc.php" method="post">
+            <div class="d-flex box mb-3 p-2 " >
+                <form action="student/joinClass.inc.php" method="post">
                     <span>Join Class</span>
-                    <span>
+                    <!-- <span>
                         <input type="text" class="addClass-input" name="class_name" placeholder="Class Name" />
-                    </span>
+                    </span> -->
                     <span>
-                        <input type="text" class="addClass-input" name="class_section" placeholder="Section" />
+                        <input type="text" class="addClass-input" name="class_code" placeholder="Class Code" />
                     </span>
-                    <input type="hidden" name="teacher_id" value="<?=$_SESSION['id']?>" >
+                    <input type="hidden" name="id" value="<?=$_SESSION['id']?>" >
                     <input type="submit" name="submit" value="submit" class="btn btn-primary py-0 px-3">
                 </form>
-            </div> -->
+            </div>
             <div class="row row-cols-1 row-cols-md-2 row-cols-sm-1 row-cols-lg-3">
                 <?php
                 $classes = giveClasses($conn, $_SESSION['id'], $_SESSION['userType']);
