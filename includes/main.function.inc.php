@@ -1,5 +1,6 @@
 <?php
 $HOME = "../home.php";
+$DOMAIN = $_SERVER['HTTP_HOST'];
 
 function redirect($url, $message = NULL)
 {
