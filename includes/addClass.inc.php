@@ -79,14 +79,14 @@ if (isset($_POST["submit"])) {
     $teacher_id = $_POST['teacher_id'];
 
     if ($class_name === "" || $section === "") {
-        redirect($HOME, "Cant be empty");
+        redirect($TeacherHOME, "Cant be empty");
     }
 
     if (addClass($conn, $class_name, $section, $teacher_id) !== false) {
-        redirect($HOME, "added");
+        redirect($TeacherHOME, "added");
     }
 
 } else {
     // echo "works";
-    redirect($HOME, "wrong link");
+    redirect($TeacherHOME, "wrong link");
 }

@@ -53,6 +53,7 @@ if (isset($_POST["submit"])) {
     $class_code = $_POST['class_code'];
     $id = $_POST['id'];
     $user_type = $_SESSION['userType'];
+    $HOME = ($user_type=="teacher")?"../teacher":"../student";
 
     if ( $class_code === "" ) {
         redirect($HOME, "Cant be empty");

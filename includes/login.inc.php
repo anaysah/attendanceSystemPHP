@@ -21,7 +21,9 @@ if(isset($_POST["submit"])){
 
 
     if(loginUser($conn, $email, $pass, $userType)){
-        redirect("../home.php","you are loged in");
+        if($userType==="teacher")
+        redirect("../teacher","you are loged in");
+        else redirect("../student","you are loged in");
     }
     redirect("../auth.php","Wrong Password");
 

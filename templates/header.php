@@ -27,7 +27,7 @@ session_start();
                 </span>
                 <?php
                 if (isset($_SESSION["id"])) {
-                    echo "<span><a href='home.php'>Home</a></span>";
+                    echo "<span><a href='{$_SESSION['userType']}'>Home</a></span>";
                     echo "<span><a href='includes/logout.inc.php'>Logout</a></span>";
                 } else {
                     echo "<span><a href='auth.php'>Auth</a></span>";
