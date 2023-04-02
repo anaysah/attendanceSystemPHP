@@ -14,7 +14,7 @@ session_start();
     <link rel='stylesheet' href='https://unicons.iconscout.com/release/v2.1.9/css/unicons.css'>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-aFq/bzH65dt+w6FI2ooMVUpc+21e0SRygnTpmBvdBgSdnuTN7QbdgL+OapgHtvPp" crossorigin="anonymous">
     <script src="https://kit.fontawesome.com/84ae347da1.js" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="styles/headers.css">
+    <link rel="stylesheet" href="../styles/headers.css">
 </head>
 
 <body class="bgImage">
@@ -27,8 +27,8 @@ session_start();
                 </span>
                 <?php
                 if (isset($_SESSION["id"])) {
-                    echo "<span><a href='{$_SESSION['userType']}'>Home</a></span>";
-                    echo "<span><a href='includes/logout.inc.php'>Logout</a></span>";
+                    echo "<span><a href='../{$_SESSION['userType']}'>Home</a></span>";
+                    echo "<span><a href='../includes/logout.inc.php'>Logout</a></span>";
                 } else {
                     echo "<span><a href='auth.php'>Auth</a></span>";
                 }
@@ -52,4 +52,4 @@ session_start();
             </div>
         </header>
         
-        <script src="js/headers.js"></script>
+        <script src="../js/headers.js"></script>

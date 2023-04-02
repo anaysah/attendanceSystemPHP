@@ -1,4 +1,4 @@
-<link rel="stylesheet" href="styles/sidemenu.css">
+<link rel="stylesheet" href="../styles/sidemenu.css">
 
 <div class="side-menu d-flex flex-column box">
     <div class="side-menu-top" id="side-menu-top">

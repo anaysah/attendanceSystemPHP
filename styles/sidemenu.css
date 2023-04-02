@@ -3,6 +3,8 @@
 
 .side-menu{
         width: 220px;
+        background-color: var(--fgColor);
+        border-radius: var(--borderR);
 }
 
 .side-menu-top{
