@@ -15,9 +15,10 @@ function redirect($url, $message = NULL)
     exit();
 }
 
-function isLoged()
+function isLoged($user_type="")
 {
     if (!isset($_SESSION["id"])) {
+        if($_SESSION["userType"]!=="" && $_SESSION["userType"]!==$user_type) redirect("../auth.php", "user on wrong page");
         redirect("../auth.php", "Please login first");
     } else {
         return true;

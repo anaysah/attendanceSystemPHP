@@ -40,3 +40,20 @@ function allTeachers($conn, $class_id)
 
     return $teacher;
 }
+
+function noOfStudents($conn, $class_id){
+    $query = "SELECT COUNT(*) as count FROM student 
+              INNER JOIN class_student_member ON student.student_id = class_student_member.student_id 
+              WHERE class_student_member.class_id = ?";
+
+    $stmt = $conn->prepare($query);
+    $stmt->bind_param("i", $class_id);
+    $stmt->execute();
+
+    $result = $stmt->get_result();
+
+    $result = $result->fetch_assoc();
+
+
+    return $result['count'];
+}
