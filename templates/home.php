@@ -140,7 +140,7 @@ function giveClasses($conn, $user_id, $user_type)
                     <div class="card-body text-success bg-image">
                         
                         <div class="d-flex justify-content-between">
-                        <a href="../<?=$_SESSION['userType']?>/peoples.php" class="class-name-btn" onclick="setClassIdCookie('<?= $class['class_id'] ?>')">
+                        <a href="../<?=$_SESSION['userType']?>/peoples.php" class="class-name-btn" onclick="setClassIdCookie('<?= $class['class_id'] ?>','<?= $class['class_name'] ?>')">
                             <span class="flex-cen"><h4 class="m-0"><?= $class['class_name'] ?></h4></span></a>
                             <span class="ml-auto copyCode-btn flex-cen tooltip-box" tooltip-data="Copy Class Link" data-link="<?= $DOMAIN ?>/home.php?join=<?= $class['class_code'] ?>"><i class="fa-regular fa-clipboard fa-lg"></i></span>
                         </div>
@@ -188,9 +188,9 @@ function giveClasses($conn, $user_id, $user_type)
     //---copyCode-btn funtion endhere
 
 
-    function setClassIdCookie(classId) {
-        document.cookie = "class_id=" + classId + "; expires=Fri, 31 Dec 9999 23:59:59 GMT; path=/";
-        // alert("Class ID cookie set to: " + classId);
+    function setClassIdCookie(class_id, class_name) {
+        document.cookie = "class_id=" + class_id + "; expires=Fri, 31 Dec 9999 23:59:59 GMT; path=/";
+        document.cookie = "class_name=" + class_name + "; expires=Fri, 31 Dec 9999 23:59:59 GMT; path=/";
     }
 
 
