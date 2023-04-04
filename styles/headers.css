@@ -5,6 +5,7 @@
 	--fgColor: #1C0D1B;
 	--fg1Color:#1f2029;
 	--priColor: #EDEADE;
+	--textColor: #C4C3CA;
 	--secColor: white;
 	--borderR: 6px;
 	--text-color: white;
@@ -163,7 +164,7 @@ menu {
 
 menu a {
 	text-decoration: none;
-	color: var(--bgColor);
+	color: var(--textColor);
 }
 
 .changeTheme-btn {
@@ -172,6 +173,9 @@ menu a {
 	border-radius: var(--borderR);
 	cursor: pointer;
 	user-select: none;
+}
+#theme-label:hover{
+	color: var(--textColor);
 }
 
 #theme-label {

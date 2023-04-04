@@ -1,0 +1,17 @@
+.cover-body{
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap-reverse;
+    justify-content: space-between;
+    margin-top: auto;
+    margin-bottom: auto;
+}
+
+.cover-img{
+    /* padding: 4rem; */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* box-sizing: border-box; */
+    /* flex-grow: 1; */
+}

@@ -30,7 +30,7 @@ session_start();
                     echo "<span><a href='../{$_SESSION['userType']}'>Home</a></span>";
                     echo "<span><a href='../includes/logout.inc.php'>Logout</a></span>";
                 } else {
-                    echo "<span><a href='auth.php'>Auth</a></span>";
+                    echo "<span><a href='auth.php'>Login</a></span>";
                 }
                 ?>
                 <!-- <span><a href="">Contact Us</a></span>
