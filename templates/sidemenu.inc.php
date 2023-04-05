@@ -17,7 +17,7 @@
 
 
 <script>
-    var links = { "side-menu-top": "../<?=$_SESSION["userType"]?>/attendance.php","peoples":"../<?=$_SESSION["userType"]?>/peoples.php","attendance":"../teacher/allattendance.php"}
+    var links = { "side-menu-top": "../<?=$_SESSION["userType"]?>/attendance.php","peoples":"../<?=$_SESSION["userType"]?>/peoples.php","attendance":"../<?=$_SESSION["userType"]?>/allattendance.php"}
     for (let id in links) {
         const myDiv = document.getElementById(id);
         myDiv.addEventListener("click", function () {

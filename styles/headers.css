@@ -14,6 +14,7 @@
 .white-theme {
 	--bgColor: rgb(245, 245, 245);
 	--fgColor: #2a2b38;
+	--textColor: #1C0D1B;
 }
 
 * {
@@ -117,12 +118,12 @@ body {
 	font-weight: 300;
 	font-size: 15px;
 	line-height: 1.7;
-	color: #c4c3ca;
+	color: var(--textColor);
 	/* background-color: #22AAA1; */
 	/* background-color: #F4FF52; */
 	/* background-color: #422040; */
-	background-color: var(--bgColor);
 	/* overflow-x: hidden; */
+	background-color: var(--bgColor);
 
 }
 
