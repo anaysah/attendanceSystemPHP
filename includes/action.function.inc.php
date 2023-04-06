@@ -57,3 +57,12 @@ function noOfStudents($conn, $class_id){
 
     return $result['count'];
 }
+
+function deleteAttendance($conn, $attendance_id, $teacher_id) {
+    $query = "DELETE FROM attendance WHERE attendance_id = '$attendance_id' AND teacher_id = '$teacher_id'";
+    if (mysqli_query($conn, $query)) {
+      return true;
+    } else {
+      return false;
+    }
+  }

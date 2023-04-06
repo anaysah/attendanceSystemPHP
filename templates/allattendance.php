@@ -7,6 +7,21 @@ require_once('../includes/main.function.inc.php');
 require_once '../includes/dbh.inc.php';
 require_once '../includes/action.function.inc.php';
 
+if(isset($_POST['deleteAttendance'])) {
+    $attendance_id = $_POST['attendance_id'];
+
+    // SQL query to delete attendance record
+    $sql = "DELETE FROM attendance WHERE attendance_id = $attendance_id";
+
+    if(mysqli_query($conn, $sql)) {
+        // attendance record deleted successfully
+        echo "Attendance record deleted successfully";
+    } else {
+        // an error occurred while deleting attendance record
+        echo "Error deleting attendance record: " . mysqli_error($conn);
+    }
+}
+
 function absentCountStudent($conn, $student_id, $class_id) {
     $stmt = $conn->prepare("SELECT COUNT(*) FROM absentees JOIN attendance ON absentees.attendance_id = attendance.attendance_id WHERE absentees.student_id = ? AND attendance.class_id = ? AND attendance.date < CURDATE()");
     $stmt->bind_param("ii", $student_id, $class_id);
@@ -161,8 +176,11 @@ if (isset($_COOKIE['class_id'])) {
                         <td><?=$att['absent_count']?></td>
                         <td><?=$att['onleave_count']?></td>
                         <td>
+                            <form action="../includes/action.inc.php" method="post" id="action-form">
                             <button type="button" class="btn btn-primary btn-sm">Edit</button>
-                            <button type="button" class="btn btn-primary btn-sm">Delete</button>
+                            <button name='deleteAttendance' class="btn btn-primary btn-sm" onclick="confirmDelete()">Delete</button>
+                            <input type='hidden' name='attendance_id' value="<?= $att['attendance_id']?>">
+                            </form>
                         </td>
                     <?php endif?>
                     <?php if($_SESSION['userType']=="student"):?>
@@ -175,5 +193,14 @@ if (isset($_COOKIE['class_id'])) {
 
     </div>
 </div>
+
+<script>
+    function confirmDelete() {
+        if (confirm("Are you sure you want to delete this attendance record?")) {
+            var form = document.getElementById('action-form');
+            form.submit();
+        }
+    }
+</script>
 
 <?php include_once("../templates/footer.php"); ?>

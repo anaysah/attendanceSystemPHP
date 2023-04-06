@@ -62,8 +62,11 @@ $date = $_POST['class_date'];
 $time = $_POST['class_time'];
 $teacher_id = $_SESSION['id'];
 $present = $_POST['present'];
-$onleave = $_POST['onleave'];
-$present = array_diff($present, $onleave);
+if(isset($_POST['onleave'])){
+    $onleave = $_POST['onleave'];
+    $present = array_diff($present, $onleave);
+}
+
 
 $reason = $_POST['reason'];
 
@@ -75,6 +78,10 @@ if($attendance_id===false){
 
 $students = allStudents($conn, $class_id);
 addAbsentees($conn, $present, $students, $attendance_id);
-addOnLeave($conn, $onleave, $students, $attendance_id, $reason);
+
+// echo $onleave;
+if(isset($onleave)){
+    addOnLeave($conn, $onleave, $students, $attendance_id, $reason);
+}
 
 redirect("../{$_SESSION['userType']}/", "attendance added");
