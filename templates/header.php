@@ -19,37 +19,28 @@ session_start();
 
 <body class="bgImage">
     <main>
-        <header class="bgImage">
-            <menu>
-                <span onclick="changeTheme(event)" class="changeTheme-btn">
-                    <span id="theme-label">Dark</span>
-                    <i class="fa-solid fa-star fa-lg changeTheme-icon" ></i>
-                </span>
-                <?php
-                if (isset($_SESSION["id"])) {
-                    echo "<span><a href='../{$_SESSION['userType']}'>Home</a></span>";
-                    echo "<span><a href='../includes/logout.inc.php'>Logout</a></span>";
-                } else {
-                    echo "<span><a href='auth.php'>Login</a></span>";
-                }
-                ?>
-                <!-- <span><a href="">Contact Us</a></span>
-                <span><a href="">About us</a></span> -->
-            </menu>
-
-            <div id="messageBox">
-                <?php
-                if (isset($_SESSION["error"])) {
-                    echo "
-                <div id='messageCard'>
-                    <span class='message'>" . $_SESSION["error"] . "</span>
-                    <span class='cross-icon' onclick='closeMessageBox(event)'>&#x2716;</span>
+        <!-- <div id="header"> -->
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12">
+                    <div id="header" class="bgImage">
+                        <div class="d-flex gap-3 float-right" id="menu">
+                            <span onclick="changeTheme(event)" class="changeTheme-btn">
+                                <span id="theme-label">Dark</span>
+                                <i class="fa-solid fa-star fa-lg changeTheme-icon"></i>
+                            </span>
+                            <?php if (isset($_SESSION["id"])) : ?>
+                                <span><a href='../<?php echo $_SESSION['userType']; ?>'>Home</a></span>
+                                <span><a href='../includes/logout.inc.php'>Logout</a></span>
+                            <?php else : ?>
+                                <span><a href='auth.php'>Login</a></span>
+                            <?php endif; ?>
+                        </div>
+                    </div>
                 </div>
-                ";
-                    unset($_SESSION["error"]);
-                }
-                ?>
+
+
             </div>
-        </header>
-        
+        </div>
+        <!-- </div> -->
         <script src="../js/headers.js"></script>
