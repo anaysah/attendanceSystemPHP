@@ -46,7 +46,8 @@
 
 .auth-box {
 	/* max-width: 440px; */
-	/* width: 440px; */
+	width: 440px;
+	max-width: 440px;
 
 	border-radius: 6px;
 
@@ -61,7 +62,7 @@
 
 @media (min-width: 500px) {
 	.auth-box {
-		width: 440px;
+		/* width: 440px; */
 	}
   }
   
@@ -133,6 +134,21 @@
 .selectedRadio{
 	background-color: var(--fgColor);
 	color: white;
+}
+
+@media (max-width: 768px) {
+	#image{
+		display: none;
+	}
+	.user_type_box{
+		width: auto;
+	}
+  }  
+
+@media (max-width: 1024px) {
+	.user_type_box{
+		width: 80%;
+	}
 }
 
 .form-group {
