@@ -10,7 +10,8 @@ if(isset($_POST["submit"])){
     $pass = $_POST["login-pass"];
     $userType = userType("user-type");
 
-    if($userType === false){
+    
+    if($userType === false){ 
         redirect("../auth.php","please select a user type");
     }
 
