@@ -21,7 +21,7 @@
 	margin: 0px;
 	padding: 0px;
 	transition: all 200ms linear;
-	/* box-sizing: border-box; */
+	box-sizing: border-box;
 }
 
 
