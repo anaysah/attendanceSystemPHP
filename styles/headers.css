@@ -9,12 +9,15 @@
 	--secColor: white;
 	--borderR: 6px;
 	--text-color: rgb(245, 245, 245);
+	--input-placeholder-color: #999;
 }
 
 .white-theme {
-	--bgColor: rgb(245, 245, 245);
+	/* --bgColor: rgb(245, 245, 245); */
+	--bgColor : #57C5B6;
 	--fgColor: white;
 	--textColor: #1C0D1B;
+	--input-placeholder-color: white	;
 }
 
 * {
@@ -39,9 +42,9 @@
 		}
 
 		.tooltip-box::before{
-			--tanslate-y : calc( -100% - var(--arrow-size)) ;
+			--tanslate-y : calc( -95% - var(--arrow-size)) ;
 			content: attr(tooltip-data);
-			color: white;
+			color: var(--textColor);
 			padding: 0px 0.5rem;
 			width: max-content;
 			background: var(--tooltip-color);
@@ -86,10 +89,7 @@ a {
 	text-decoration: none;
 }
 
-a:hover {
-	text-decoration: none;
-	color: white;
-}
+
 
 .link {
 	color: #c4c3ca;
@@ -168,7 +168,16 @@ main {
 	margin-bottom: 10px;
 }
 
+#menu>span{
+	padding: 0 5px;
+	font-weight: 500;
+}
 
+#menu>span:hover,#menu a:hover{
+	border-radius: var(--borderR);
+	background-color: var(--bgColor);
+	color: var(--fgColor);
+}
 
 /* #menu a {
 	text-decoration: none;
@@ -208,14 +217,14 @@ main {
 }
 
 #messageCard {
-	background-color: grey;
+	background-color: var(--bgColor);
 	border-radius: var(--borderR);
 	border: solid 2px red;
 	padding-left: 10px;
 	width: fit-content;
 	margin: 0 auto;
 	overflow: hidden;
-	color: var(--bgColor);
+	color: var(--textColor);
 	font-weight: bold;
 
 }

@@ -138,6 +138,7 @@ input[type="radio"] {
 	border-bottom-width: 2px;
 	font-size: 17px;
 	transition: all 0.3s ease;
+	color: var(--input-placeholder-color);
 }
 
 .form-inner form .field input:focus-within + .input-icon{
@@ -147,7 +148,7 @@ input[type="radio"] {
 }
 
 .form-inner form .field input::placeholder {
-	color: #999;
+	color: var(--input-placeholder-color);
 	transition: all 0.3s ease;
 }
 
@@ -249,6 +250,7 @@ form .field-btn input[type="submit"] {
 	color: #999;
 	-webkit-transition: all 200ms linear;
 	transition: all 200ms linear;
+	color: var(--input-placeholder-color);
 }
 
 .wrapper .user-type-box {

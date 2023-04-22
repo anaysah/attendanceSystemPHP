@@ -26,7 +26,7 @@
             <div class="form-inner">
 
                 <form action="includes/login.inc.php" class="login" method="post">
-                    <input type="hidden" name="user-type" value="teacher" id="user-type">
+                    <input type="hidden" name="user-type" value="teacher" >
                     <div class="field">
                         <input type="email" name="login-email" class="form-style" placeholder="Your Email" id="logemail" autocomplete="off">
                         <i class="input-icon uil uil-at"></i>
@@ -46,7 +46,7 @@
 
                 <!-- ##### Signup form ##### -->
                 <form action="includes/signup.inc.php" class="signup" method="post">
-                    <input type="hidden" name="user-type" value="teacher" id="user-type">
+                    <input type="hidden" name="user-type" value="teacher" >
                     <div class="field">
                         <input type="text" name="signup-name" class="form-style" placeholder="Your Full Name" id="signname" autocomplete="off">
                         <i class="input-icon uil uil-user"></i>
@@ -96,12 +96,15 @@
         return false;
     });
 
-    
+
     const radioButtons = document.querySelectorAll('input[name="user-type-slide"]');
     radioButtons.forEach((radioButton) => {
         radioButton.addEventListener('change', () => {
             // Set the value of hidden input to the selected radio button's value
-            document.getElementById('user-type').value = radioButton.value;
+            const userType = document.querySelectorAll('input[name="user-type"]');
+            userType.forEach((element) => {
+                element.value = radioButton.value;
+            });
         });
     });
 </script>

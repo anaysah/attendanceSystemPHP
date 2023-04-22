@@ -24,8 +24,8 @@ session_start();
             <div class="row">
                 <div class="col-12">
                     <div id="header" class="bgImage">
-                        <div class="d-flex gap-3 float-right" id="menu">
-                            <span onclick="changeTheme(event)" class="changeTheme-btn">
+                        <div class="d-flex gap-1 float-right" id="menu">
+                            <span onclick="changeTheme()" class="changeTheme-btn">
                                 <span id="theme-label">Dark</span>
                                 <i class="fa-solid fa-star fa-lg changeTheme-icon"></i>
                             </span>
