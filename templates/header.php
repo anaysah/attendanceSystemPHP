@@ -43,4 +43,14 @@ session_start();
             </div>
         </div>
         <!-- </div> -->
+        <div id="messageBox">
+            <?php if (isset($_SESSION["error"])) : ?>
+                <div id='messageCard'>
+                    <span class='message'><?= $_SESSION["error"] ?></span>
+                    <span class='cross-icon' onclick='closeMessageBox(event)'>&#x2716;</span>
+                </div>
+                <?php unset($_SESSION["error"]) ?>
+            <?php endif; ?>
+        </div>
+
         <script src="../js/headers.js"></script>
