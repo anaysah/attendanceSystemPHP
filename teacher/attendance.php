@@ -10,7 +10,6 @@ $student_count = 1;
 if (isset($_COOKIE['class_id'])) {
     $cookieValue = $_COOKIE['class_id'];
     $students = allStudents($conn, $cookieValue);
-
 } else {
     $students = [];
 }
@@ -18,32 +17,50 @@ if (isset($_COOKIE['class_id'])) {
 
 <link rel="stylesheet" href="../styles/peoples.css">
 <link rel="stylesheet" href="../styles/attendance.css">
-<div class="container-fluid main-body d-flex ">
+<div class="container-fluid main-body d-flex">
     <?php include_once("../templates/sidemenu.inc.php"); ?>
-    <div class="container-fluid p-0 px-2">
+    <div class="container-fluid">
 
-        <div class="container-fluid">
-            <form action="attendance.inc.php" method="post" class="attendance-form">
-                <!-- <input type="hidden" name="class_id" value="<?= $_COOKIE['class_id'] ?>"> -->
-                <!-- <div class="form-group"> -->
-                <label for="">Class</label>
-                <input class="form-control" type="text" placeholder="<?= $_COOKIE['class_name'] ?>" readonly>
 
-                <label for="date">Date</label>
-                <input type="date" class="form-control" name="class_date">
-                <!-- </div> -->
-                <!-- <div class="form-group"> -->
-                <label for="time">Time</label>
-                <input type="time" class="form-control" name="class_time">
-                <!-- </div> -->
+        <form action="attendance.inc.php" method="post" class="attendance-form">
+            <div class="input-box mb-2">
+                <div>
+                    <label for="">Class</label>
+                    <input class="form-control" type="text" placeholder="<?= $_COOKIE['class_name'] ?>" readonly>
+                </div>
 
+                <div>
+                    <label for="date">Date</label>
+                    <input type="date" class="form-control" name="class_date">
+                </div>
+
+                <div>
+                    <label for="time">Time</label>
+                    <input type="time" class="form-control" name="class_time">
+                </div>
+
+
+            </div>
+            <div class="">
                 <div class="form-check form-check-inline">
                     <input class="form-check-input" type="checkbox" value="" onclick="absentAll(this)">
                     <label class="form-check-label" for="inlineCheckbox1">Make everyone absent</label>
                 </div>
-                <h5 class="mt-3">Check the students who are present!</h5>
-                </span>
-                <hr class="m-0">
+
+            </div>
+
+            <div class="title-note-box mt-2">
+                <div>
+                <h5 class="">Check the students who are present!</h5>
+                </div>
+                <div>
+                    <button type="submit" class="btn btn-primary btn-sm">Save the attendance!</button>
+                    <!-- <input type="submit" name="submit" value=""> -->
+                </div>
+            </div>
+
+            <hr class="m-0">
+            <div class="attendacne-sheet">
                 <table class="table">
                     <thead>
                         <tr>
@@ -63,9 +80,7 @@ if (isset($_COOKIE['class_id'])) {
                                 </th>
                                 <td>
                                     <label class="form-check flex-center">
-                                        <input class="form-check-input present-checkbox" type="checkbox"
-                                            value="<?= $student['student_id']; ?>" name="present[]"
-                                            id="student_<?= $student['student_id']; ?>" checked>
+                                        <input class="form-check-input present-checkbox" type="checkbox" value="<?= $student['student_id']; ?>" name="present[]" id="student_<?= $student['student_id']; ?>" checked>
                                     </label>
                                 </td>
 
@@ -74,19 +89,17 @@ if (isset($_COOKIE['class_id'])) {
                                 </td>
 
                                 <td>
-                                    <input class="form-check-input onleave-checkbox" type="checkbox" id="flexCheckDefault"
-                                        onclick="disableAttendance(this,<?= $student['student_id']; ?>)"
-                                        value="<?= $student['student_id']; ?>" name="onleave[]">
-                                    <input type="text" class="reason-text-input " placeholder="Reason"
-                                        name="reason[<?= $student['student_id']; ?>]">
+                                    <input class="form-check-input onleave-checkbox" type="checkbox" id="flexCheckDefault" onclick="disableAttendance(this,<?= $student['student_id']; ?>)" value="<?= $student['student_id']; ?>" name="onleave[]">
+                                    <input type="text" class="reason-text-input " placeholder="Reason" name="reason[<?= $student['student_id']; ?>]">
                                 </td>
                             </tr>
                         <?php } ?>
                     </tbody>
                 </table>
-                <input type="submit" name="submit" value="Submit">
-            </form>
-        </div>
+            </div>
+
+        </form>
+
     </div>
 </div>
 
@@ -110,19 +123,19 @@ if (isset($_COOKIE['class_id'])) {
         const onleaveCheckboxes = document.querySelectorAll('.onleave-checkbox');
         // console.log(presentCheckboxes);
         if (checkbox.checked) {
-            presentCheckboxes.forEach(function (presentCheckbox) {
+            presentCheckboxes.forEach(function(presentCheckbox) {
                 presentCheckbox.checked = false;
                 presentCheckbox.disabled = true;
             });
-            onleaveCheckboxes.forEach(function (onleaveCheckbox) {
+            onleaveCheckboxes.forEach(function(onleaveCheckbox) {
                 onleaveCheckbox.disabled = true;
             });
         } else {
-            presentCheckboxes.forEach(function (presentCheckbox) {
+            presentCheckboxes.forEach(function(presentCheckbox) {
                 presentCheckbox.checked = true;
                 presentCheckbox.disabled = false;
             });
-            onleaveCheckboxes.forEach(function (onleaveCheckbox) {
+            onleaveCheckboxes.forEach(function(onleaveCheckbox) {
                 onleaveCheckbox.disabled = false;
             });
         }

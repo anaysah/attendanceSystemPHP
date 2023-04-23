@@ -28,10 +28,10 @@ if (isset($_COOKIE['class_id'])) {
 ?>
 
 <link rel="stylesheet" href="../styles/peoples.css">
-<div class="container-fluid main-body d-flex ">
+<div class="container-fluid main-body d-flex">
     <?php include_once("../templates/sidemenu.inc.php"); ?>
-    <div class="container-fluid p-0 px-2" >
-        <div class="container-fluid">
+    <div class="container-fluid">
+        <div class="container-fluid p-0">
             <h3>Teachers</h3><hr>
             <table class="table">
                 <thead>
@@ -59,7 +59,7 @@ if (isset($_COOKIE['class_id'])) {
                 </tbody>
             </table>
         </div><br>
-        <div class="container-fluid" >
+        <div class="container-fluid p-0">
             <h3>Students</h3><hr>
             <table class="table">
                 <thead>

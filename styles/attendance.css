@@ -1,21 +1,47 @@
-.present-radio-btn{
+.present-radio-btn {
     /* width: 100%; */
 }
 
-.present-radio-btn input{
+.present-radio-btn input {
     /* display: none; */
 }
-.reason-text-input{
+
+.reason-text-input {
     /* display: none; */
     visibility: hidden;
     padding: 0rem 0.4rem;
-  /* font-size: 1rem; */
-  font-weight: 400;
-  /* line-height: 1.5; */
-  color: #212529;
-  background-color: #fff;
-  /* background-clip: padding-box; */
-  border: 1px solid #ced4da;
-  border-radius: 0.25rem;
-  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+    /* font-size: 1rem; */
+    font-weight: 400;
+    /* line-height: 1.5; */
+    color: #212529;
+    background-color: #fff;
+    /* background-clip: padding-box; */
+    border: 1px solid #ced4da;
+    border-radius: 0.25rem;
+    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+
+.input-box {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    grid-column-gap: 10px;
+}
+
+.title-note-box {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+.title-note-box button {
+    border: none;
+    padding: .2rem .5rem;
+}
+
+.attendacne-sheet {
+    /* display: grid; */
+    /* grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); */
+    overflow: auto;
+    /* white-space: nowrap; */
 }
