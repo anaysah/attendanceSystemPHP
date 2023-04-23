@@ -24,6 +24,9 @@ session_start();
             <div class="row">
                 <div class="col-12">
                     <div id="header" class="bgImage">
+                        <div id="side-menu-bar-btn">
+                        <i class="fa-solid fa-bars fa-xl"></i>
+                        </div>
                         <div class="d-flex gap-1 float-right" id="menu">
                             <span onclick="changeTheme()" class="changeTheme-btn">
                                 <span id="theme-label">Dark</span>

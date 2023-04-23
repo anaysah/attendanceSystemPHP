@@ -1,7 +1,7 @@
 <?php require_once '../includes/action.function.inc.php'; ?>
 <link rel="stylesheet" href="../styles/sidemenu.css">
 
-<div class="side-menu d-flex flex-column box">
+<div class="side-menu box" id="side-menu">
     <div class="side-menu-top" id="side-menu-top">
         <span class="border add-class flex-center"><i class="fa-sharp fa-solid fa-plus fa-lg"></i><span>Add
                 Class</span></span>
@@ -61,4 +61,12 @@
 
     const activeClass =document.getElementById("class_<?= $_COOKIE['class_id']; ?>");
     activeClass.classList.add('active-class');
+
+    const menuBarBtn = document.getElementById("side-menu-bar-btn");
+    menuBarBtn.addEventListener("click",()=>{
+        const sideMenu = document.getElementById("side-menu");
+        sideMenu.classList.toggle("show");
+        console.log(sideMenu)
+    })
+    console.log(menuBarBtn);
 </script>
