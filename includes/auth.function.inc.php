@@ -222,7 +222,7 @@ function sendVerificationMail($serverName, $id, $token, $r_email, $s_email, $nam
             //Content
             $mail->isHTML(true); // Set email format to HTML
             $mail->Subject = 'Verification Link';
-            $mail->Body = "This is your Verification link <a href='$url'><b>$url</b></a>";
+            $mail->Body = "This is your Verification link <a href='$url' target='_blank'><b>$url</b></a>";
             $mail->AltBody = "This is your Verification $url";
 
             $mail->send();

@@ -47,7 +47,7 @@ if(isset($_POST["submit"])){
 
     $id = $userData['id'];
     $token = $userData['token'];
-    $mail = sendVerificationMail($serverName.":8000",$id, $token,$email, $myMail, $name, $userType);
+    $mail = sendVerificationMail($websiteUrl,$id, $token,$email, $myMail, $name, $userType);
     if($mail !== false){
         redirect("../auth.php","Check Mail");
     }

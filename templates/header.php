@@ -9,7 +9,7 @@ session_start();
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Roll Call</title>
     <!-- <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css'> -->
     <link rel='stylesheet' href='https://unicons.iconscout.com/release/v2.1.9/css/unicons.css'>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-aFq/bzH65dt+w6FI2ooMVUpc+21e0SRygnTpmBvdBgSdnuTN7QbdgL+OapgHtvPp" crossorigin="anonymous">
@@ -25,8 +25,14 @@ session_start();
                 <div class="col-12">
                     <div id="header" class="bgImage">
                         <div id="side-menu-bar-btn">
-                        <i class="fa-solid fa-bars fa-xl"></i>
+                            <?php
+                            $current_file = basename(parse_url($_SERVER['PHP_SELF'], PHP_URL_PATH));
+                            if (in_array($current_file, ['attendance.php', 'peoples.php', 'allattendance.php'])) {
+                                echo '<i class="fa-solid fa-bars fa-xl"></i>';
+                            }
+                            ?>
                         </div>
+
                         <div class="d-flex gap-1 float-right" id="menu">
                             <span onclick="changeTheme()" class="changeTheme-btn">
                                 <span id="theme-label">Dark</span>
