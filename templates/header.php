@@ -59,6 +59,11 @@ session_start();
                     <span class='cross-icon' onclick='closeMessageBox(event)'>&#x2716;</span>
                 </div>
                 <?php unset($_SESSION["error"]) ?>
+            <?php elseif (isset($_GET['message'])) : ?>
+                <div id='messageCard'>
+                    <span class='message'><?= $_GET['message'] ?></span>
+                    <span class='cross-icon' onclick='closeMessageBox(event)'>&#x2716;</span>
+                </div>
             <?php endif; ?>
         </div>
 

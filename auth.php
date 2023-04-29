@@ -79,10 +79,10 @@
 </section>
 <script>
     const loginText = document.querySelector(".title-text .login");
-    const loginForm = document.querySelector("form.login");
-    const loginBtn = document.querySelector("label.login");
-    const signupBtn = document.querySelector("label.signup");
-    const signupLink = document.querySelector("form .signup-link a");
+    const loginForm = document.querySelector("form.login"); //pura login form ka div
+    const loginBtn = document.querySelector("label.login"); //sabse upar vala login btn toogle vale mei se
+    const signupBtn = document.querySelector("label.signup"); //sabse upar vala sign btn toogle vale mei se
+    const signupLink = document.querySelector("form .signup-link a"); //not a member vala button
     signupBtn.onclick = (() => {
         loginForm.style.marginLeft = "-50%";
         loginText.style.marginLeft = "-50%";
@@ -96,7 +96,7 @@
         return false;
     });
 
-
+    // jab bhi user type change vale kisi bhi radio pe click hoga toh hidden input jo form mei hai uska value change ho jayega
     const radioButtons = document.querySelectorAll('input[name="user-type-slide"]');
     radioButtons.forEach((radioButton) => {
         radioButton.addEventListener('change', () => {
@@ -107,6 +107,7 @@
             });
         });
     });
+    //--end
 </script>
 
 
