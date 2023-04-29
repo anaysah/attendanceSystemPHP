@@ -24,13 +24,18 @@ session_start();
             <div class="row">
                 <div class="col-12">
                     <div id="header" class="bgImage">
-                        <div id="side-menu-bar-btn">
+                        
+                        <div id="header-title-bar">
+                        
                             <?php
                             $current_file = basename(parse_url($_SERVER['PHP_SELF'], PHP_URL_PATH));
                             if (in_array($current_file, ['attendance.php', 'peoples.php', 'allattendance.php'])) {
+                                echo '<span id="side-menu-bar-btn">';
                                 echo '<i class="fa-solid fa-bars fa-xl"></i>';
+                                echo '</span>';
                             }
                             ?>
+                            <div id="header-title">RollCall </div>
                         </div>
 
                         <div class="d-flex gap-1 float-right" id="menu">
