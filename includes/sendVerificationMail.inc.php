@@ -76,7 +76,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     // print_r($data);
     if($data['status']==='inactive'){
         $mail = sendVerificationMail($websiteUrl, $id, $token, $email, $myMail, $name, $userType);
-        if ($mail) echo "Pls check your EMail"; 
+        if ($mail) echo "Please check your E-mail"; 
         else echo "Verification may be not sent please try registering later again";
     }else{
         echo "cant send mail already verified";
